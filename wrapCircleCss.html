@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Circle Wrap Text</title>
     <style>
         :root {
             font-size: 2rem;
@@ -36,27 +36,29 @@
     </style>
 </head>
 <body>
-<div class="circle" id="circle" style="left: 100px;">
-  <span id="text">
-      Why did you do that?
+<div class="circle" id="circle">
+  <span>
+      I am perfectly wrapped in the circle!
   </span>
 </div>
-
-<input type="text" name="fname" oninput="input()" id="input">
 </body>
 <script>
     "use strict";
-    function adjustSize() {
-        // all the units are in rem
 
-        // more iteration, more accurate, slower
-        const maxIteration = 20;
+    function adjustSize(circleID) {
+        // all the units are in rem
+        // following two variables are customisable
 
         // minimum radius of circle
         let minRadius = 1;
 
-        const circle = document.getElementById('circle');
-        const text = document.getElementById('text');
+        // more iteration, more accurate, slower
+        const maxIteration = 200;
+
+        // following are not customisable
+        const circle = document.getElementById(circleID);
+        const text = circle.children[0];
+        console.log(circle.children[0]);
 
         let maxRadius = 10;
 
@@ -112,24 +114,13 @@
         }
     }
 
-    adjustSize();
+    adjustSize('circle');
 
     function input() {
         const text = document.getElementById('input').value;
         const circleText = document.getElementById('text');
         circleText.innerHTML = text;
-        adjustSize();
-    }
-
-    document.onmousemove = function (e) {
-        const circleHeight = circle.offsetHeight;
-        const circleWidth = circle.offsetWidth;
-        const clientX = e.clientX;
-        const clientY = e.clientY;
-        const centerX = clientX - 0.5 * circleWidth;
-        const centerY = clientY - 0.5 * circleHeight;
-        circle.style.left = centerX + 'px';
-        circle.style.top = centerY + 'px';
+        adjustSize('circle');
     }
 </script>
 </html>
