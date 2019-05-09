@@ -2,9 +2,10 @@ adjustSize('circle');
 
 function input() {
     const text = document.getElementById('input').value;
-    const circleText = document.getElementById('text');
+    const circleText = document.getElementById('circle').children[0];
     circleText.innerHTML = text;
     adjustSize('circle');
+    centerCircle();
 }
 
 
@@ -24,3 +25,5 @@ function centerCircle() {
 centerCircle();
 
 window.onresize = () => centerCircle();
+
+document.getElementById('input').oninput = input;
