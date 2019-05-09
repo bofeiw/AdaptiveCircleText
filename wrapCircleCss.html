@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        :root {
+            font-size: 2rem;
+        }
+
+        /* ref: https://codepen.io/skeate/pen/YPyqWd/ */
+        .circle {
+            position: absolute;
+            background: #accede;
+            text-align: center;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 1rem;
+        }
+
+        .circle::before {
+            content: '';
+            height: 100%;
+            width: 50%;
+            float: left;
+            shape-outside: polygon(0 0, 100% 0, 60% 4%, 40% 10%, 20% 20%, 10% 28.2%, 5% 34.4%, 0 50%, 5% 65.6%, 10% 71.8%, 20% 80%, 40% 90%, 60% 96%, 100% 100%, 0% 100%);
+        }
+
+        .circle > span::before {
+            content: '';
+            height: 100%;
+            width: 50%;
+            float: right;
+            shape-outside: polygon(100% 0, 0 0, 40% 4%, 60% 10%, 80% 20%, 90% 28.2%, 95% 34.4%, 100% 50%, 95% 65.6%, 90% 71.8%, 80% 80%, 60% 90%, 40% 96%, 0 100%, 100% 100%);
+        }
+    </style>
+</head>
+<body>
+<div class="circle" id="circle" style="left: 100px;">
+  <span id="text">
+      Why did you do that?
+  </span>
+</div>
+
+<input type="text" name="fname" oninput="input()" id="input">
+</body>
+<script>
+    function adjustSize() {
+        const circle = document.getElementById('circle');
+        const text = document.getElementById('text');
+
+        let radius = 1;
+        const initialSideLength = (2 * radius) + 'rem';
+
+        circle.style.width = initialSideLength;
+        circle.style.height = initialSideLength;
+
+        while (true) {
+            const circleHeight = circle.offsetHeight;
+            const textHeight = text.offsetHeight;
+            if (circleHeight > textHeight) {
+                break;
+            } else {
+                radius += 0.01;
+                const sideLength = (2 * radius) + 'rem';
+                circle.style.width = sideLength;
+                circle.style.height = sideLength;
+                circle.style.borderRadius = radius + 'rem';
+            }
+        }
+    }
+
+    adjustSize();
+
+    function input() {
+        const text = document.getElementById('input').value;
+        const circleText = document.getElementById('text');
+        circleText.innerHTML = text;
+        adjustSize();
+    }
+
+    // document.onmousemove = function (e) {
+    //     const circleHeight = circle.offsetHeight;
+    //     const circleWidth = circle.offsetWidth;
+    //     const clientX = e.clientX;
+    //     const clientY = e.clientY;
+    //     const centerX = clientX - 0.5 * circleWidth;
+    //     const centerY = clientY - 0.5 * circleHeight;
+    //     circle.style.left = centerX + 'px';
+    //     circle.style.top = centerY + 'px';
+    // }
+</script>
+</html>
