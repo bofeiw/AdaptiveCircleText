@@ -27,6 +27,8 @@ Try here: https://bofei.io/AdaptiveCircleText/
 ```
 4. Make a call to `adjustSize('yourID')` and pass the id in. Done!
 
+You can also see [this example](wrapCircleCss.html)
+
 # TODO
 - too many words (roughly more than 200) might cause infinite loop
 
