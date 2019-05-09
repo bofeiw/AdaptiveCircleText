@@ -8,3 +8,6 @@ Basically, you can have your text just wrapped in a circle easily, and the text 
 
 # TODO
 - too many words (roughly more than 200) might cause infinite loop
+
+# Contribute
+You are welcome to contribute!
