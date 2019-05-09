@@ -3,124 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Circle Wrap Text</title>
-    <style>
-        :root {
-            font-size: 2rem;
-        }
-
-        /* ref: https://codepen.io/skeate/pen/YPyqWd/ */
-        .circle {
-            position: absolute;
-            background: #accede;
-            text-align: center;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 1rem;
-        }
-
-        .circle::before {
-            content: '';
-            height: 100%;
-            width: 50%;
-            float: left;
-            shape-outside: polygon(0 0, 100% 0, 60% 4%, 40% 10%, 20% 20%, 10% 28.2%, 5% 34.4%, 0 50%, 5% 65.6%, 10% 71.8%, 20% 80%, 40% 90%, 60% 96%, 100% 100%, 0% 100%);
-        }
-
-        .circle > span::before {
-            content: '';
-            height: 100%;
-            width: 50%;
-            float: right;
-            shape-outside: polygon(100% 0, 0 0, 40% 4%, 60% 10%, 80% 20%, 90% 28.2%, 95% 34.4%, 100% 50%, 95% 65.6%, 90% 71.8%, 80% 80%, 60% 90%, 40% 96%, 0 100%, 100% 100%);
-        }
-    </style>
+    <!-- Include the css here -->
+    <link rel="stylesheet" href="adjustSize.css">
 </head>
 <body>
+
+<!-- here is the HTML of the circle, assign it an id and add it a circle class -->
 <div class="circle" id="circle">
   <span>
       I am perfectly wrapped in the circle!
   </span>
 </div>
+
 </body>
+<!-- Include the js here -->
+<script src="adjustSize.js"></script>
+<!-- here goes your js to call adjustSize -->
 <script>
-    "use strict";
-
-    function adjustSize(circleID) {
-        // all the units are in rem
-        // following two variables are customisable
-
-        // minimum radius of circle
-        let minRadius = 1;
-
-        // more iteration, more accurate, slower
-        const maxIteration = 200;
-
-        // following are not customisable
-        const circle = document.getElementById(circleID);
-        const text = circle.children[0];
-        console.log(circle.children[0]);
-
-        let maxRadius = 10;
-
-        // find a rough max bound for maximum radius that fit the text
-        while (true) {
-            // update DOM size
-            const sideLength = (2 * maxRadius) + 'rem';
-            circle.style.width = sideLength;
-            circle.style.height = sideLength;
-            circle.style.borderRadius = maxRadius + 'rem';
-
-            const circleBottom = circle.offsetTop + circle.offsetHeight;
-            const textTop = text.offsetTop;
-            const textBottom = text.offsetTop + text.offsetHeight;
-            // text is completely inside circle in DOM
-            const isSizeFit = textTop < circleBottom && textBottom < circleBottom;
-            if (isSizeFit) {
-                break;
-            } else {
-                maxRadius *= 2;
-            }
-        }
-
-        let iterationCount = 0;
-
-        // do iterations to find a fit in a binary search manner
-        while (true) {
-            // update DOM size
-            const currentRadius = (maxRadius + minRadius) / 2;
-            const sideLength = (2 * currentRadius) + 'rem';
-            circle.style.width = sideLength;
-            circle.style.height = sideLength;
-            circle.style.borderRadius = currentRadius + 'rem';
-
-            const circleBottom = circle.offsetTop + circle.offsetHeight;
-            const textTop = text.offsetTop;
-            const textBottom = text.offsetTop + text.offsetHeight;
-            // text is completely inside circle in DOM
-            const isSizeFit = textTop < circleBottom && textBottom < circleBottom;
-            if (isSizeFit) {
-                if (iterationCount > maxIteration) {
-                    // fit and accurate enough, stop
-                    break;
-                } else {
-                    // fit but can be more small, decrease max
-                    maxRadius = currentRadius;
-                }
-            } else {
-                // too small, increase min
-                minRadius = currentRadius;
-            }
-            ++iterationCount;
-        }
-    }
-
     adjustSize('circle');
-
-    function input() {
-        const text = document.getElementById('input').value;
-        const circleText = document.getElementById('text');
-        circleText.innerHTML = text;
-        adjustSize('circle');
-    }
 </script>
 </html>
