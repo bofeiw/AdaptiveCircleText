@@ -11,3 +11,6 @@ Basically, you can have your text just wrapped in a circle easily, and the text 
 
 # Contribute
 You are welcome to contribute!
+
+# License
+["Anti 996" License](LICENSE.txt), do whatever you want if your company does not exploit your employees
