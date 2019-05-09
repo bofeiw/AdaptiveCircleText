@@ -26,6 +26,11 @@ Try here: https://bofei.io/AdaptiveCircleText/
 </div>
 ```
 4. Make a call to `adjustSize('yourID')` and pass the id in. Done!
+```html
+<script>
+    adjustSize('circle');
+</script>
+```
 
 You can also see [this example](wrapCircleCss.html)
 
