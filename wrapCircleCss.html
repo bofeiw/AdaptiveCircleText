@@ -45,28 +45,70 @@
 <input type="text" name="fname" oninput="input()" id="input">
 </body>
 <script>
+    "use strict";
     function adjustSize() {
+        // all the units are in rem
+
+        // more iteration, more accurate, slower
+        const maxIteration = 20;
+
+        // minimum radius of circle
+        let minRadius = 1;
+
         const circle = document.getElementById('circle');
         const text = document.getElementById('text');
 
-        let radius = 1;
-        const initialSideLength = (2 * radius) + 'rem';
+        let maxRadius = 10;
 
-        circle.style.width = initialSideLength;
-        circle.style.height = initialSideLength;
-
+        // find a rough max bound for maximum radius that fit the text
         while (true) {
-            const circleHeight = circle.offsetHeight;
-            const textHeight = text.offsetHeight;
-            if (circleHeight > textHeight) {
+            // update DOM size
+            const sideLength = (2 * maxRadius) + 'rem';
+            circle.style.width = sideLength;
+            circle.style.height = sideLength;
+            circle.style.borderRadius = maxRadius + 'rem';
+
+            const circleBottom = circle.offsetTop + circle.offsetHeight;
+            const textTop = text.offsetTop;
+            const textBottom = text.offsetTop + text.offsetHeight;
+            // text is completely inside circle in DOM
+            const isSizeFit = textTop < circleBottom && textBottom < circleBottom;
+            if (isSizeFit) {
                 break;
             } else {
-                radius += 0.01;
-                const sideLength = (2 * radius) + 'rem';
-                circle.style.width = sideLength;
-                circle.style.height = sideLength;
-                circle.style.borderRadius = radius + 'rem';
+                maxRadius *= 2;
             }
+        }
+
+        let iterationCount = 0;
+
+        // do iterations to find a fit in a binary search manner
+        while (true) {
+            // update DOM size
+            const currentRadius = (maxRadius + minRadius) / 2;
+            const sideLength = (2 * currentRadius) + 'rem';
+            circle.style.width = sideLength;
+            circle.style.height = sideLength;
+            circle.style.borderRadius = currentRadius + 'rem';
+
+            const circleBottom = circle.offsetTop + circle.offsetHeight;
+            const textTop = text.offsetTop;
+            const textBottom = text.offsetTop + text.offsetHeight;
+            // text is completely inside circle in DOM
+            const isSizeFit = textTop < circleBottom && textBottom < circleBottom;
+            if (isSizeFit) {
+                if (iterationCount > maxIteration) {
+                    // fit and accurate enough, stop
+                    break;
+                } else {
+                    // fit but can be more small, decrease max
+                    maxRadius = currentRadius;
+                }
+            } else {
+                // too small, increase min
+                minRadius = currentRadius;
+            }
+            ++iterationCount;
         }
     }
 
@@ -79,15 +121,15 @@
         adjustSize();
     }
 
-    // document.onmousemove = function (e) {
-    //     const circleHeight = circle.offsetHeight;
-    //     const circleWidth = circle.offsetWidth;
-    //     const clientX = e.clientX;
-    //     const clientY = e.clientY;
-    //     const centerX = clientX - 0.5 * circleWidth;
-    //     const centerY = clientY - 0.5 * circleHeight;
-    //     circle.style.left = centerX + 'px';
-    //     circle.style.top = centerY + 'px';
-    // }
+    document.onmousemove = function (e) {
+        const circleHeight = circle.offsetHeight;
+        const circleWidth = circle.offsetWidth;
+        const clientX = e.clientX;
+        const clientY = e.clientY;
+        const centerX = clientX - 0.5 * circleWidth;
+        const centerY = clientY - 0.5 * circleHeight;
+        circle.style.left = centerX + 'px';
+        circle.style.top = centerY + 'px';
+    }
 </script>
 </html>
