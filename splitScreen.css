@@ -1,5 +1,9 @@
 /* ref: https://www.w3schools.com/howto/howto_css_split_screen.asp */
 
+html, body {
+    height: 100%;
+}
+
 /* Split the screen in half */
 .split {
     height: 100%;
@@ -7,7 +11,7 @@
     position: fixed;
     z-index: 1;
     top: 0;
-    overflow-x: hidden;
+    overflow: hidden;
     padding-top: 20px;
 }
 
@@ -32,4 +36,20 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .split {
+        height: 50%;
+        width: 100%;
+        left: 0;
+    }
+
+    .left {
+        top: 0;
+    }
+
+    .right {
+        top: 50%;
+    }
 }
