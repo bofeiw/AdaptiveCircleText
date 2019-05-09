@@ -55,13 +55,16 @@ function adjustSize(circleID) {
         circle.style.height = sideLength;
         circle.style.borderRadius = currentRadius + 'rem';
 
-        const circleBottom = circle.offsetTop + circle.offsetHeight;
+        const circleBottom = circle.offsetHeight;
         const textTop = text.offsetTop;
         const textBottom = text.offsetTop + text.offsetHeight;
         // text is completely inside circle in DOM
         const isSizeFit = textTop < circleBottom && textBottom < circleBottom;
         if (isSizeFit) {
             if (iterationCount > maxIteration) {
+                console.log(textTop)
+                console.log(circleBottom)
+                console.log(textBottom)
                 // fit and accurate enough, stop
                 break;
             } else {
