@@ -5,43 +5,36 @@
     <title>Circle Wrap Text</title>
     <!-- Include the css here -->
     <link rel="stylesheet" href="adjustSize.css">
+    <link rel="stylesheet" href="primary.css">
     <link rel="stylesheet" href="splitScreen.css">
 </head>
 <body>
 
 <div class="split left">
-    <div class="centered">
-        <h2>Jane Flex</h2>
-        <p>Some text.</p>
+    <div class="centered" id="container">
+        <h2>Demo</h2>
+        <!-- here is the HTML of the circle, assign it an id and add it a circle class -->
+        <div class="circle" id="circle">
+          <span>
+              Hey! I am perfectly wrapped in the circle! Try to type your own words!
+          </span>
+        </div>
     </div>
 </div>
 
 <div class="split right">
     <div class="centered">
-        <h2>John Doe</h2>
-        <p>Some text here too.</p>
+        <h2>Type!</h2>
+        <textarea>
+
+        </textarea>
     </div>
 </div>
 
-<!-- here is the HTML of the circle, assign it an id and add it a circle class -->
-<div class="circle" id="circle">
-  <span>
-      I am perfectly wrapped in the circle!
-  </span>
-</div>
 
 </body>
 <!-- Include the js here -->
 <script src="adjustSize.js"></script>
 <!-- here goes your js to call adjustSize -->
-<script>
-    adjustSize('circle');
-
-    function input() {
-        const text = document.getElementById('input').value;
-        const circleText = document.getElementById('text');
-        circleText.innerHTML = text;
-        adjustSize('circle');
-    }
-</script>
+<script src="input.js"></script>
 </html>

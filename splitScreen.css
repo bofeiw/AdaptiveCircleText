@@ -31,11 +31,14 @@ html, body {
 
 /* If you want the content centered horizontally and vertically */
 .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+.circle {
+    background-color: dimgray;
+    color: white;
 }
 
 @media (max-aspect-ratio: 1/1) {
