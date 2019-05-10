@@ -1,4 +1,5 @@
 "use strict";
+
 /*
 * Adjust the size of a circle (div) so that the contained text (span)
 * is perfectly fit inside the circle.
@@ -7,7 +8,7 @@
 *
 * circleID: the id of circle in DOM
 * */
-function adjustSize(circleID) {
+function adjustSize(circle) {
     // all the units are in rem
     // following two variables are customisable
 
@@ -18,7 +19,12 @@ function adjustSize(circleID) {
     const maxIteration = 200;
 
     // following are not customisable
-    const circle = document.getElementById(circleID);
+    console.log(typeof circle);
+    if (typeof circle === 'string') {
+        // find circle by given circle ID
+        // otherwise it need to be a circle
+        circle = document.getElementById(circle);
+    }
     const text = circle.children[0];
     console.log(circle.children[0]);
 
@@ -62,9 +68,6 @@ function adjustSize(circleID) {
         const isSizeFit = textTop < circleBottom && textBottom < circleBottom;
         if (isSizeFit) {
             if (iterationCount > maxIteration) {
-                console.log(textTop)
-                console.log(circleBottom)
-                console.log(textBottom)
                 // fit and accurate enough, stop
                 break;
             } else {
@@ -77,4 +80,18 @@ function adjustSize(circleID) {
         }
         ++iterationCount;
     }
+}
+
+function makeCircle(content) {
+    // create elements
+    const circle = document.createElement('div');
+    const text = document.createElement('span');
+
+    circle.classList.add('circle');
+    circle.appendChild(text);
+    text.innerHTML = content;
+
+    // when circle is appended to HTML, adjust its size
+    circle.addEventListener('DOMNodeInserted', () => adjustSize(circle));
+    return circle;
 }
