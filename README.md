@@ -28,17 +28,27 @@ Try here: https://bofei.io/AdaptiveCircleText/
 4. Make a call to `adjustSize('yourID')` and pass the id in. Done!
 ```html
 <script>
-    adjustSize('circle');
+    adjustSize('yourID');
 </script>
 ```
 
-You can also see [this example](wrapCircleCss.html)
+You can also change step 3 and 4 to a single step:
+Make a circle using `makeCircle` and pass content in
+```js
+const circle = makeCircle("I am perfectly wrapped in the circle!");
+```
+And then append to where ever you want
+```js
+document.body.appendChild(circle);
+```
+
+You can also see the [example using adjustSize](exampleAdjustSize.html) or the [example makeCircle](exampleMakeCircle.html).
 
 # TODO
 - too many words (roughly more than 200) might cause infinite loop
 
-# Contribute
+# Contribution
 You are welcome to contribute!
 
 # License
-["Anti 996" License](LICENSE.txt), do whatever you want if your company does not exploit your employees
+["Anti 996" License](LICENSE.txt), do whatever you want if you oryour company does not exploit employees
