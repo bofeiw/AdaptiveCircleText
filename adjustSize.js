@@ -6,7 +6,7 @@
 * The algorithm uses a binary search, so it wont be that slow.
 * Don't forget to add CSS to html! It is very important!
 *
-* circleID: the id of circle in DOM
+* circle: the id of circle in DOM or circle HTML Node
 * */
 function adjustSize(circle) {
     // all the units are in rem
@@ -82,6 +82,13 @@ function adjustSize(circle) {
     }
 }
 
+/*
+* Make a circle wrapping the content.
+* You can append to your HTML whenever you want!
+*
+* content: the text to show in the circle
+* return: HTML Node of the circle
+* */
 function makeCircle(content) {
     // create elements
     const circle = document.createElement('div');
