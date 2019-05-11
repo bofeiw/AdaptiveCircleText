@@ -45,7 +45,6 @@ document.body.appendChild(circle);
 You can also see the [example using adjustSize](exampleAdjustSize.html) or the [example makeCircle](exampleMakeCircle.html).
 
 # TODO
-- too many words (roughly more than 200) might cause infinite loop
 
 # Contribution
 You are welcome to contribute!
