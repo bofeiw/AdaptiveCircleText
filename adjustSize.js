@@ -77,6 +77,11 @@ function adjustSize(circle) {
         } else {
             // too small, increase min
             minRadius = currentRadius;
+
+            // fix bug: in some cases it causes infinite loop using only binary search
+            // because the lower fit might be omitted by halving radius
+            // so slightly increase it will solve the problem.
+            maxRadius *= 1.01;
         }
         ++iterationCount;
     }
