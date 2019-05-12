@@ -45,6 +45,7 @@ document.body.appendChild(circle);
 You can also see the [example using adjustSize](exampleAdjustSize.html) or the [example makeCircle](exampleMakeCircle.html).
 
 # TODO
+- On Microsoft Edge, it crashes
 
 # Contribution
 You are welcome to contribute!
