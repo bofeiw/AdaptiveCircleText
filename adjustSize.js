@@ -25,21 +25,10 @@ function adjustSize(circle) {
         circle = document.getElementById(circle);
     }
 
-    // some browsers does not support css used
-    if (CSS.supports('shape-outside', 'circle()')) {
-        circle.classList.add('circle-support');
-    } else {
-        // if not support, it will try to adjust in another way using css
-        // its slightly uglier but it works
-        // if not support but still try to adjust, it might crash
-        circle.classList.add('circle-not-support');
-    }
-
-
     const text = circle.children[0];
 
     let maxRadius = 10;
-
+console.log(1)
     // find a rough max bound for maximum radius that fit the text
     while (true) {
         // update DOM size
@@ -114,6 +103,6 @@ function makeCircle(content) {
     text.innerHTML = content;
 
     // when circle is appended to HTML, adjust its size
-    circle.addEventListener('DOMNodeInserted', () => adjustSize(circle));
+    // circle.addEventListener('DOMNodeInserted', () => adjustSize(circle));
     return circle;
 }
