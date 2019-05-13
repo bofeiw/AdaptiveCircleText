@@ -19,14 +19,24 @@ function adjustSize(circle) {
     const maxIteration = 200;
 
     // following are not customisable
-    console.log(typeof circle);
     if (typeof circle === 'string') {
         // find circle by given circle ID
         // otherwise it need to be a circle
         circle = document.getElementById(circle);
     }
+
+    // some browsers does not support css used
+    if (CSS.supports('shape-outside', 'circle()')) {
+        circle.classList.add('circle-support');
+    } else {
+        // if not support, it will try to adjust in another way using css
+        // its slightly uglier but it works
+        // if not support but still try to adjust, it might crash
+        circle.classList.add('circle-not-support');
+    }
+
+
     const text = circle.children[0];
-    console.log(circle.children[0]);
 
     let maxRadius = 10;
 
