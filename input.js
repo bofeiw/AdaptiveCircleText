@@ -24,6 +24,8 @@ function centerCircle() {
 
 centerCircle();
 
-window.onresize = () => centerCircle();
+window.onresize = function () {
+    centerCircle();
+};
 
 document.getElementById('input').oninput = input;
