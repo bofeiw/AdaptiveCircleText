@@ -19,17 +19,16 @@ function adjustSize(circle) {
     const maxIteration = 200;
 
     // following are not customisable
-    console.log(typeof circle);
     if (typeof circle === 'string') {
         // find circle by given circle ID
         // otherwise it need to be a circle
         circle = document.getElementById(circle);
     }
+
     const text = circle.children[0];
-    console.log(circle.children[0]);
 
     let maxRadius = 10;
-
+console.log(1)
     // find a rough max bound for maximum radius that fit the text
     while (true) {
         // update DOM size
@@ -104,6 +103,7 @@ function makeCircle(content) {
     text.innerHTML = content;
 
     // when circle is appended to HTML, adjust its size
-    circle.addEventListener('DOMNodeInserted', () => adjustSize(circle));
+    // use higher order function here will cause IE to crash
+    circle.addEventListener('DOMNodeInserted', function () { adjustSize(circle)});
     return circle;
 }
