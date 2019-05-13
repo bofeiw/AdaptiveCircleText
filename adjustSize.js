@@ -103,6 +103,7 @@ function makeCircle(content) {
     text.innerHTML = content;
 
     // when circle is appended to HTML, adjust its size
-    // circle.addEventListener('DOMNodeInserted', () => adjustSize(circle));
+    // use higher order function here will cause IE to crash
+    circle.addEventListener('DOMNodeInserted', function () { adjustSize(circle)});
     return circle;
 }
