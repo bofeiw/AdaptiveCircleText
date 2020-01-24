@@ -3,7 +3,7 @@ This repo is for adaptive circle which wrap text in a 'just-fit' way.
 Basically, you can have your text just wrapped in a circle easily, and the text will fit in the circle just fine!
 
 # Demo 
-Try here: https://bofei.io/AdaptiveCircleText/
+Try here: https://bofeiw.github.io/AdaptiveCircleText
 
 ![demo.gif](demo.gif)
 
